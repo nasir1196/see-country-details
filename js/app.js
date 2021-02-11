@@ -7,10 +7,16 @@ searchCountry.addEventListener('click', function () {
 });
 
 // create async function 
-async function loadCountryData(inputCountry) {
-    const promise = await fetch(`https://restcountries.eu/rest/v2/name/${inputCountry}?fullText=true`);
-    const countryData = await promise.json();
-    displayData(countryData);
+const loadCountryData = async (inputCountry) => {
+    const url = `https://restcountries.eu/rest/v2/name/${inputCountry}?fullText=true`;
+    try {
+        const promise = await fetch(url);
+        const countryData = await promise.json();
+        displayData(countryData);
+    }
+    catch (error) {
+        console.log(error);
+    }
 };
 
 // Create function for load data 
